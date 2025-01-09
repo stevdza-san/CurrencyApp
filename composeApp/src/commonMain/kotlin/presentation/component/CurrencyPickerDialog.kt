@@ -41,11 +41,13 @@ fun CurrencyPickerDialog(
     onConfirmClick: (CurrencyCode) -> Unit,
     onDismiss: () -> Unit
 ) {
+
     val allCurrencies = remember(key1 = currencies) {
         mutableStateListOf<Currency>().apply { addAll(currencies) }
     }
 
     var searchQuery by remember { mutableStateOf("") }
+
     var selectedCurrencyCode by remember(currencyType) {
         mutableStateOf(currencyType.code)
     }
