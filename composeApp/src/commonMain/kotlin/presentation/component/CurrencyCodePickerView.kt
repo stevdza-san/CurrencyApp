@@ -34,13 +34,11 @@ import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import domain.model.CurrencyCode
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import primaryColor
 import surfaceColor
 import textColor
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun CurrencyCodePickerView(
     code: CurrencyCode,

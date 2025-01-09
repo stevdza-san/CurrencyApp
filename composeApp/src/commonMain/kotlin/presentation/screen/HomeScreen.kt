@@ -11,7 +11,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.koin.getScreenModel
+import cafe.adriel.voyager.koin.koinScreenModel
 import domain.model.CurrencyType
 import presentation.component.CurrencyPickerDialog
 import presentation.component.HomeBody
@@ -21,7 +21,7 @@ import surfaceColor
 class HomeScreen : Screen {
     @Composable
     override fun Content() {
-        val viewModel = getScreenModel<HomeViewModel>()
+        val viewModel = koinScreenModel<HomeViewModel>()
         val rateStatus by viewModel.rateStatus
         val allCurrencies = viewModel.allCurrencies
         val sourceCurrency by viewModel.sourceCurrency

@@ -9,7 +9,7 @@ import org.mongodb.kbson.ObjectId
 @Serializable
 data class ApiResponse(
     val meta: MetaData,
-    val data: Map<String, Currency>
+    val data: Map<String, CurrencyDto>
 )
 
 @Serializable
@@ -18,10 +18,22 @@ data class MetaData(
     val lastUpdatedAt: String
 )
 
-@Serializable
 open class Currency: RealmObject {
     @PrimaryKey
     var _id: ObjectId = ObjectId()
     var code: String = ""
     var value: Double = 0.0
+}
+
+@Serializable
+data class CurrencyDto(
+    val code: String,
+    val value: Double
+)
+
+fun CurrencyDto.toCurrency(): Currency {
+    return Currency().apply {
+        this.code = this@toCurrency.code
+        this.value = this@toCurrency.value
+    }
 }

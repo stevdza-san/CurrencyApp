@@ -6,6 +6,7 @@ import domain.model.ApiResponse
 import domain.model.Currency
 import domain.model.CurrencyCode
 import domain.model.RequestState
+import domain.model.toCurrency
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.DefaultRequest
@@ -21,7 +22,7 @@ class CurrencyApiServiceImpl(
 ) : CurrencyApiService {
     companion object {
         const val ENDPOINT = "https://api.currencyapi.com/v3/latest"
-        const val API_KEY = "cur_live_7fIujvQxlDmWLEjp5mo4VrZDvHZ1dMCqm5kkdhPv"
+        const val API_KEY = "cur_live_x5vQhKrsY2St4dK8Dd4hjZGgpKJYhphhy40bgecy"
     }
 
     private val httpClient = HttpClient {
@@ -60,6 +61,7 @@ class CurrencyApiServiceImpl(
                     .filter { currency ->
                         availableCurrencyCodes.contains(currency.code)
                     }
+                    .map { it.toCurrency() }
 
                 // Persist a timestamp
                 val lastUpdated = apiResponse.meta.lastUpdatedAt
