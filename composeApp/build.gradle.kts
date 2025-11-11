@@ -9,7 +9,7 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinxSerialization)
-    alias(libs.plugins.realm.plugin)
+    alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
@@ -37,6 +37,8 @@ kotlin {
             implementation(libs.androidx.activity.compose)
 
             implementation(libs.ktor.client.android)
+            implementation(libs.sqldelight.android)
+            implementation(libs.koin.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -61,7 +63,6 @@ kotlin {
             implementation(libs.multiplatform.settings.no.arg)
             implementation(libs.multiplatform.settings.coroutines)
 
-            implementation(libs.mongodb.realm)
             implementation(libs.kotlin.coroutines)
             implementation(libs.stately.common)
 
@@ -69,6 +70,7 @@ kotlin {
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation(libs.sqldelight.ios)
         }
     }
 
@@ -109,3 +111,10 @@ android {
     }
 }
 
+sqldelight {
+    databases {
+        create("CurrencyDatabase") {
+            packageName.set("com.stevdza_san")
+        }
+    }
+}

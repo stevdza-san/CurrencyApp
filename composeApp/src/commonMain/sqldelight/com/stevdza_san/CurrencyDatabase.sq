@@ -1,0 +1,18 @@
+CREATE TABLE CurrencyTable(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    code TEXT NOT NULL UNIQUE,
+    rate REAL NOT NULL
+);
+
+-- Insert or replace a currency entry
+insertOrReplaceCurrency:
+INSERT OR REPLACE INTO CurrencyTable(code, rate)
+VALUES (?, ?);
+
+-- Get all currencies
+getAllCurrencies:
+SELECT * FROM CurrencyTable;
+
+-- Delete all currencies
+deleteAllCurrencies:
+DELETE FROM CurrencyTable;

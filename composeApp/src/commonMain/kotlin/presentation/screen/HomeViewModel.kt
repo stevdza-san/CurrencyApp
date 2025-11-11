@@ -7,7 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import domain.CurrencyApiService
-import domain.MongoRepository
+import domain.LocalRepository
 import domain.PreferencesRepository
 import domain.model.Currency
 import domain.model.RateStatus
@@ -17,7 +17,8 @@ import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
 
 sealed class HomeUiEvent {
     data object RefreshRates : HomeUiEvent()
@@ -28,8 +29,8 @@ sealed class HomeUiEvent {
 
 class HomeViewModel(
     private val preferences: PreferencesRepository,
-    private val mongoDb: MongoRepository,
-    private val api: CurrencyApiService
+    private val localDb: LocalRepository,
+    private val api: CurrencyApiService,
 ) : ScreenModel {
     private var _rateStatus: MutableState<RateStatus> =
         mutableStateOf(RateStatus.Idle)
@@ -99,9 +100,10 @@ class HomeViewModel(
         }
     }
 
+    @OptIn(ExperimentalTime::class)
     private suspend fun fetchNewRates() {
         try {
-            val localCache = mongoDb.readCurrencyData().first()
+            val localCache = localDb.readCurrencyData().first()
             if (localCache.isSuccess()) {
                 if (localCache.getSuccessData().isNotEmpty()) {
                     println("HomeViewModel: DATABASE IS FULL")
@@ -129,10 +131,10 @@ class HomeViewModel(
     private suspend fun cacheTheData() {
         val fetchedData = api.getLatestExchangeRates()
         if (fetchedData.isSuccess()) {
-            mongoDb.cleanUp()
+            localDb.cleanUp()
             fetchedData.getSuccessData().forEach {
                 println("HomeViewModel: ADDING ${it.code}")
-                mongoDb.insertCurrencyData(it)
+                localDb.insertCurrencyData(it)
             }
             println("HomeViewModel: UPDATING _allCurrencies")
             _allCurrencies.clear()
@@ -142,6 +144,7 @@ class HomeViewModel(
         }
     }
 
+    @OptIn(ExperimentalTime::class)
     private suspend fun getRateStatus() {
         _rateStatus.value = if (preferences.isDataFresh(
                 currentTimestamp = Clock.System.now().toEpochMilliseconds()

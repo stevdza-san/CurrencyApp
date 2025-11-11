@@ -123,7 +123,7 @@ fun CurrencyPickerDialog(
                         ) {
                             items(
                                 items = availableCurrencies,
-                                key = { it._id.toHexString() }
+                                key = { it.id.toHexString() }
                             ) {currency ->
                                 CurrencyCodePickerView(
                                     code = CurrencyCode.valueOf(currency.code),

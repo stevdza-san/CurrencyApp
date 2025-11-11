@@ -6,16 +6,16 @@ android-targetSdk = "36"
 androidx-activityCompose = "1.11.0"
 compose = "1.9.4"
 compose-plugin = "1.9.3"
-kotlin = "2.0.20"
-ktor = "3.0.1"
-date-time = "0.6.1"
+kotlin = "2.2.21"
+ktor = "3.3.2"
+date-time = "0.7.1"
 multiplatformSettings = "1.3.0"
 voyager = "1.1.0-beta03"
 koinCore = "4.1.1"
-realm = "3.0.0"
 coroutines = "1.10.2"
 statelyCommon = "2.1.0"
 composeIcons = "1.1.1"
+sqldelight = "2.1.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -30,6 +30,7 @@ voyager-screen-model = { module = "cafe.adriel.voyager:voyager-screenmodel", ver
 voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager" }
 voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voyager" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinCore" }
 
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
@@ -39,11 +40,13 @@ ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "k
 
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "date-time" }
 
-mongodb-realm = { module = "io.realm.kotlin:library-base", version.ref = "realm" }
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 stately-common = { module = "co.touchlab:stately-common", version.ref = "statelyCommon" }
 
 feather-icons = { module = "br.com.devsrsouza.compose.icons:feather", version.ref = "composeIcons" }
+
+sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
+sqldelight-ios = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -52,4 +55,4 @@ jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-realm-plugin = { id = "io.realm.kotlin", version.ref = "realm" }
+sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }

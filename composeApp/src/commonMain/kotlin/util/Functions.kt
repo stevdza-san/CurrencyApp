@@ -4,11 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
 import currencyapp.composeapp.generated.resources.Res
 import currencyapp.composeapp.generated.resources.bebas_nue_regular
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.Font
+import kotlin.time.ExperimentalTime
 
 fun calculateExchangeRate(source: Double, target: Double): Double {
     return target / source
@@ -18,6 +19,7 @@ fun convert(amount: Double, exchangeRate: Double): Double {
     return amount * exchangeRate
 }
 
+@OptIn(ExperimentalTime::class)
 fun displayCurrentDateTime(): String {
     val currentTimestamp = Clock.System.now()
     val date = currentTimestamp.toLocalDateTime(TimeZone.currentSystemDefault())

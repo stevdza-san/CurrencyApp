@@ -9,9 +9,10 @@ import domain.PreferencesRepository
 import domain.model.CurrencyCode
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalSettingsApi::class)
 class PreferencesImpl(
@@ -28,6 +29,7 @@ class PreferencesImpl(
 
     private val flowSettings: FlowSettings = (settings as ObservableSettings).toFlowSettings()
 
+    @OptIn(ExperimentalTime::class)
     override suspend fun saveLastUpdated(lastUpdated: String) {
         flowSettings.putLong(
             key = TIMESTAMP_KEY,
@@ -35,6 +37,7 @@ class PreferencesImpl(
         )
     }
 
+    @OptIn(ExperimentalTime::class)
     override suspend fun isDataFresh(currentTimestamp: Long): Boolean {
         val savedTimestamp = flowSettings.getLong(
             key = TIMESTAMP_KEY,
