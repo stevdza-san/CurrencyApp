@@ -1,20 +1,21 @@
 [versions]
-agp = "8.7.3"
-android-compileSdk = "35"
+agp = "8.13.1"
+android-compileSdk = "36"
 android-minSdk = "24"
-android-targetSdk = "35"
-androidx-activityCompose = "1.9.3"
-compose = "1.7.6"
-compose-plugin = "1.7.0"
+android-targetSdk = "36"
+androidx-activityCompose = "1.11.0"
+compose = "1.9.4"
+compose-plugin = "1.9.3"
 kotlin = "2.0.20"
 ktor = "3.0.1"
 date-time = "0.6.1"
-multiplatformSettings = "1.2.0"
+multiplatformSettings = "1.3.0"
 voyager = "1.1.0-beta03"
-koinCore = "4.0.1"
+koinCore = "4.1.1"
 realm = "3.0.0"
-coroutines = "1.9.0"
-statelyCommon = "2.0.5"
+coroutines = "1.10.2"
+statelyCommon = "2.1.0"
+composeIcons = "1.1.1"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -41,6 +42,8 @@ kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.
 mongodb-realm = { module = "io.realm.kotlin:library-base", version.ref = "realm" }
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 stately-common = { module = "co.touchlab:stately-common", version.ref = "statelyCommon" }
+
+feather-icons = { module = "br.com.devsrsouza.compose.icons:feather", version.ref = "composeIcons" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

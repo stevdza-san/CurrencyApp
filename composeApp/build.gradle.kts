@@ -1,3 +1,8 @@
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
+
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
@@ -9,10 +14,8 @@ plugins {
 
 kotlin {
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "11"
-            }
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
         }
     }
     
@@ -61,6 +64,8 @@ kotlin {
             implementation(libs.mongodb.realm)
             implementation(libs.kotlin.coroutines)
             implementation(libs.stately.common)
+
+            implementation(libs.feather.icons)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)

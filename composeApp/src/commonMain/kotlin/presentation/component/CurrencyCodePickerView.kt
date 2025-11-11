@@ -17,8 +17,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,6 +31,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import compose.icons.FeatherIcons
+import compose.icons.feathericons.Check
 import domain.model.CurrencyCode
 import org.jetbrains.compose.resources.painterResource
 import primaryColor
@@ -106,7 +106,7 @@ private fun CurrencyCodeSelector(isSelected: Boolean = false) {
         if (isSelected) {
             Icon(
                 modifier = Modifier.size(12.dp),
-                imageVector = Icons.Default.Check,
+                imageVector = FeatherIcons.Check,
                 contentDescription = "Checkmark icon",
                 tint = surfaceColor
             )
